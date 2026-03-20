@@ -12,6 +12,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,5 +78,24 @@ public class ProductService {
             throw new ProductNotFoundException("Product " + id + " not exist");
         }
         productRepository.updateActiveById(id);
+    }
+
+    public List<ProductResponse> getProducts(List<Integer> productsId) {
+        if (productsId.isEmpty()) return List.of();
+        List<ProductResponse> productResponses = new ArrayList<>();
+        for (Integer i : productsId) {
+            Product byId = productRepository.findById(i).orElseThrow();
+            productResponses.add(
+                    new ProductResponse(
+                            byId.getId(),
+                            byId.getSku(),
+                            byId.getName(),
+                            byId.getPrice(),
+                            byId.getCurrency(),
+                            byId.isActive()
+                    )
+            );
+        }
+        return productResponses;
     }
 }

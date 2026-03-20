@@ -40,4 +40,5 @@ public class CategoryController {
     public void update(@RequestBody @Valid CategoryUpdateRequest categoryUpdateRequest, @PathVariable int id) {
         categoryService.update(categoryUpdateRequest, id);
     }
+
 }

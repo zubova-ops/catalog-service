@@ -1,6 +1,7 @@
 package C.Users._2.Desktop.catalog_service.controller;
 
 import C.Users._2.Desktop.catalog_service.dto.ProductDTO;
+import C.Users._2.Desktop.catalog_service.dto.ProductResponse;
 import C.Users._2.Desktop.catalog_service.dto.ProductSaveRequest;
 import C.Users._2.Desktop.catalog_service.mapper.ProductMapper;
 import C.Users._2.Desktop.catalog_service.model.Product;
@@ -51,6 +52,12 @@ public class ProductController {
     public void updateActive(@PathVariable int id) {
         productService.deActiveProduct(id);
     }
+
+    @PostMapping("/internal/products/snapshots")
+    public List<ProductResponse> getProducts(@RequestBody List<Integer> productsId) {
+        return productService.getProducts(productsId);
+    }
+
 
 
 }
