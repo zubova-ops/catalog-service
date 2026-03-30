@@ -14,7 +14,7 @@ import java.util.Currency;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "Products")
+@Table(name = "products")
 public class Product {
     @Id
     @Column(name = "id")
