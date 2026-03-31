@@ -25,7 +25,6 @@ public class CategoryController {
     public CategoryResponse save(@RequestBody @Valid CategorySaveRequest categoryRequest) {
         return categoryService.create(categoryRequest);
     }
-
     @GetMapping("/categories")
     public List<Category> getCategories() {
         return categoryService.findAll();
